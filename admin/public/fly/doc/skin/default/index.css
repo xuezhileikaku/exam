@@ -1,0 +1,196 @@
+body, html
+{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    font-family: HelveticaNeue, helvetica, arial, clean, sans-serif;
+    overflow: hidden;
+}
+.gray
+{
+    color: #444;
+}
+
+.font-light
+{
+    font-weight: 100;
+}
+
+#lang
+{
+    position:absolute;
+    right:20px;
+    top:20px;
+}
+
+#rootTable
+{
+    height: 100%;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#left-cell, #right-cell
+{
+    height: 100%;
+}
+
+#left-cell
+{
+    box-sizing: border-box;
+    width: 250px;
+    background-color: rgb(248,248,248);
+    border-right: 1px solid gray;
+    vertical-align:top;
+    padding-bottom:37px;
+}
+
+#left-top-bar
+{
+    padding:5px 5px 5px 10px;
+    background-color:#f9f9f9;
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#f9f9f9, endColorstr=#e8e8e8);
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#e8e8e8));
+	background: -moz-linear-gradient(top, #f9f9f9, #e8e8e8);
+	background-image: -o-linear-gradient(top, #f9f9f9, #e8e8e8);
+	border-bottom:1px solid #cccccc;
+}
+
+#query
+{
+    vertical-align:middle;
+}
+
+#expand-All,#collapse-All
+{
+    background:url(imgs/tree.png) no-repeat 1px 1px;
+    width:18px;
+    height:18px;
+    display:inline-block;
+    margin:0px 0px 0px 5px;
+    vertical-align:middle;
+    border:1px solid transparent;
+}
+
+#collapse-All
+{
+    background-image:url(imgs/list.png);
+}
+
+#expand-All:hover,#collapse-All:hover
+{
+    border:1px solid gray;
+}
+
+#left-cell .f-s-tree
+{
+    height: 100%;
+    overflow: auto;
+    padding-left:10px;
+}
+
+#top-div
+{
+    height: 50px;
+    background-color: rgb(6,83,130);
+    color: White;
+    font-size: 30px;
+    padding-left: 50px;
+    padding-top: 5px;
+    vertical-align: middle;
+}
+
+#top-div a
+{
+    font-size: 18px;
+    color: #CCFFFF;
+    margin-left: 20px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+#rightRoot
+{
+    overflow: auto;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+
+#right-welcome
+{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#right-welcome-title
+{
+    font-size: 40px;
+    display: inline-block;
+    margin-right: 130px;
+    margin-bottom: 40px;
+}
+
+#right-welcome-info
+{
+    text-align: center;
+    border-top:1px dotted gray;
+    padding-top:5px;
+}
+
+#right-welcome-info-inner
+{
+    font-size: 18px;
+    margin-right: 50px;
+    text-align: left;
+    display: inline-block;
+}
+
+#right-welcome-info a
+{
+    text-decoration:none;
+    color:Gray;
+}
+
+.m-toggle
+{
+    cursor: pointer;
+}
+
+.m-name
+{
+    font-weight: bold;
+    color: #083772;
+}
+
+.m-detail, m-detailRemark
+{
+    margin-top: 20px;
+}
+
+.m-return
+{
+    margin-top: 20px;
+}
+
+.m-title
+{
+    font-weight: bold;
+}
+
+.m-members .m-member
+{
+    margin-bottom: 40px;
+}
+
+.m-members .m-detail
+{
+    display: none;
+}
+
+.m-class .m-detailRemark
+{
+    padding-left:40px;
+}

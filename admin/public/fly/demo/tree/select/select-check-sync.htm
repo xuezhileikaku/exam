@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        <!--check 和 select 状态同步-->
+        Check and select node at the same time
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a>
+    <div id="treeContainer" class="demo-tree-container">
+    </div>    <div class="demo-code">
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; selectionMode: fly.mini.selectionMode.multi,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checkMode:fly.mini.checkMode.multi,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>keepCheckAndSelectSync:true</strong><br />
+        })<br />
+    </div>
+    
+    <script type="text/javascript" id="code">
+       
+        var tree = new fly.mini.Tree({
+            container: "treeContainer",
+            selectionMode: fly.mini.selectionMode.multi,
+            checkMode:fly.mini.checkMode.multi,
+            keepCheckAndSelectSync:true,
+            data: items_hasIcon
+        });
+
+
+    </script>
+</body>
+</html>

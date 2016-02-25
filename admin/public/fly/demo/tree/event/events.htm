@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        onBeforeSelect,onSelect,onBeforeCheck,onCheck,onBeforeExpand,onExpand ...
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <br />
+    <span id="state" class="demo-result">&nbsp;</span>
+    <div id="treeContainer-checkbox" class="demo-tree-container">
+    </div>
+    <div class="demo-code">
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//在节点选中前执行,返回false可阻止事件执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In selected node before implementation, 
+        returns false can prevent events execution </em><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onBeforeSelect</strong>: function 
+        (item,fireByDom) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//在节点选中后执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In selected node after implementation </em><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onSelect</strong>: function (item, 
+        fireByDom) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+        <em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //在节点勾选前执行,返回false可阻止事件执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In checked node before implementation, 
+        returns false can prevent events execution&nbsp; </em><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onBeforeCheck</strong>: function 
+        (item,fireByDom) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//在节点勾选后执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In checked node after implementation&nbsp; </em><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onCheck</strong>: function (item, 
+        fireByDom) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+        <em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //在节点展开前执行,返回false可阻止事件执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In expanded node before implementation, 
+        returns false can prevent events execution&nbsp; </em><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onBeforeExpand</strong>: function 
+        (item,fireByDom) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//在节点展开后执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In expanded node after implementation&nbsp; </em><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onExpand</strong>: function (item, 
+        fireByDom) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+        })<br />
+        <br />
+    </div>
+    <script type="text/javascript" id="code">
+
+        items_hasIcon[0].items[1].text += " (forbid check)"
+        items_hasIcon[0].items[2].text += " (forbid select)"
+        items_hasIcon[0].items[3].text += " (forbid expand)"
+
+        var treeCheckbox = new fly.mini.Tree({
+            container: "treeContainer-checkbox",
+            checkMode: fly.mini.checkMode.multi,
+            useCheckHalf: false,
+            data: items_hasIcon,
+            onBeforeSelect: function (item) {
+                if (item.text.match(/forbid select/)) {
+                    document.getElementById('state').innerHTML = 'forbid select'
+                    return false;
+                }
+            },
+            onSelect: function (item, fireByDom) {
+                if (fireByDom) {
+                    var state = (item.selected ? "selected " : "unselect ") + item.text
+                    alert(state)
+                    document.getElementById('state').innerHTML = state
+                }
+            },
+            onBeforeCheck: function (item) {
+                if (item.text.match(/forbid check/)) {
+                    document.getElementById('state').innerHTML = 'forbid check'
+                    return false;
+                }
+            },
+            onCheck: function (item, fireByDom) {
+                if (fireByDom) {
+                    alert((item.checked ? "checked " : "uncheck ") + item.text)
+                    document.getElementById('state').innerHTML = "checked: " + treeCheckbox.getCheckItems().length + ",unchecked: " + treeCheckbox.getCheckItems(false).length;
+                }
+            },
+            onBeforeExpand: function (item) {
+                if (item.text && item.text.match(/forbid expand/)) {
+                    document.getElementById('state').innerHTML = 'forbid expand'
+                    return false;
+                }
+            },
+            onExpand: function (item, fireByDom) {
+                if (fireByDom) {
+                    var state = (item.expanded ? "expanded " : "unexpand ") + item.text
+                    alert(state)
+                    document.getElementById('state').innerHTML = state
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>页面跳转</title>
+</head>
+<body>
+
+链接式：
+<a href="javascript:history.go(-1)">返回上一步</a>
+<a href="<%=Request.ServerVariables("HTTP_REFERER")%>" >返回上一步</a>
+
+</body>
+</html>

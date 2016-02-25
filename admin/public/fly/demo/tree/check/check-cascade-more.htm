@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        <!--check-级联选择-->
+        Advanced - Cascade check nodes
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <br />
+    Select the parent affect the child, child choice does not affect the parent（父级选择影响子级，子级选择不影响父级）:
+    <div class="demo-code">
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checkMode: fly.mini.checkMode.multi,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp;checkCascade: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: 
+        false, children: true
+        },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: false, children: 
+        true
+        }
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        }</strong><br />
+        });</div>
+    <div id="treeContainer-parent" class="demo-tree-container">
+    </div>
+    <br />
+    <br />
+    Select the affected parent the child, parent choice does not affect children（子级选择影响父级，父级选择不影响子级）:<div class="demo-code">
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checkMode: fly.mini.checkMode.multi,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp;checkCascade: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: true, children: false
+        },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: true, children: false
+        }
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        }</strong><br />
+        });</div>
+    <div id="treeContainer-children" class="demo-tree-container">
+    </div>
+    <br />
+    <br />
+    Affects only the most recent one layer（只影响最近的一级）:<div class="demo-code">
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checkMode: fly.mini.checkMode.multi,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkCascade: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: 1, children: 1 },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: 1, children: 1 }
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        }</strong><br />
+        });<br />
+        <br />
+        Or:<br />
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; checkMode: fly.mini.checkMode.multi,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkCascade:1</strong><br />
+        });</div>
+    <div id="treeContainer-1" class="demo-tree-container">
+    </div>
+    <br />
+    <br />
+    You can also（你还可以）:<div class="demo-code">
+        Affect the parent and child（影响父级和子级）:<br />
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkCascade:true</strong><br />
+        });<br />
+        <br />
+        Equivalent to（等同于）:<br />
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkCascade: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: true, children: true },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: true, children: 
+        true }
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        }</strong><br />
+        })<br />
+        </div>
+    <script type="text/javascript" id="code">
+       
+        var treeParent = new fly.mini.Tree({
+            container: "treeContainer-parent",
+            checkMode: fly.mini.checkMode.multi,
+            checkCascade: {
+                check: { parent: false, children: true },
+                uncheck: { parent: false, children: true }
+            },
+            data: items_hasIcon
+        });
+
+        var treeChildren = new fly.mini.Tree({
+            container: "treeContainer-children",
+            checkMode: fly.mini.checkMode.multi,
+            checkCascade: {
+                check: { parent: true, children: false },
+                uncheck: { parent: true, children: false }
+            },
+            data: items_hasIcon
+        });
+
+        var tree1 = new fly.mini.Tree({
+            container: "treeContainer-1",
+            checkMode: fly.mini.checkMode.multi,
+            checkCascade: {
+                check: { parent: 1, children: 1 },
+                uncheck: { parent: 1, children: 1 }
+            },
+            data: items_hasIcon
+        });
+    </script>
+    <div class="demo-code">
+        Parent and child do not affect(父级和子级都不影响):<br />
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp;checkCascade:false</strong><br />
+        });<br />
+        <br />
+        Equivalent to（等同于）:<br />
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        checkCascade: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: 
+        false, children: false },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: 
+        false, children: false }
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        }<br />
+        });<br />
+        <br />
+        Equivalent to（等同于）:<br />
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkCascade:0</strong><br />
+        });</div>
+    
+    <div class="demo-code">
+        Affect the three layer parent and three layer child(影响3层父级和3层子级):<br />
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkCascade:3</strong><br />
+        })<br />
+        <br />
+        Equivalent to（等同于）:<br />
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>
+        checkCascade: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: 
+        3, children: 3 },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: 
+        3, children: 3 }
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</strong><br />
+        })</div>
+    <div class="demo-code">
+        Affect the one layer parent and three layer child(影响1层父级和3层子级):<br />
+        new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>
+        checkCascade: {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check: { parent: 1, children: 
+        3 },
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uncheck: { parent: 1, children: 
+        3 }
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</strong><br />
+        })</div>
+</body>
+</html>

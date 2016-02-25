@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>fly.mini.Tree 1.0 API </title>
+    <script src="fly/fly.js" type="text/javascript"></script>
+    <script src="../fly.mini-all.js" type="text/javascript"></script>
+    <script src="common/index.js" type="text/javascript"></script>
+    <link href="../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="skin/default/doc.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        body, html
+        {
+            padding: 0px;
+            overflow: hidden;
+        }
+        
+        .item-parent
+        {
+            background-image: url(../common/imgs/library.gif);
+        }
+        
+        .item-children
+        {
+            background-image: url(../common/imgs/file.gif);
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-product">
+        <a href="http://mini.flyui.net" target="_blank">
+            <img src="common/imgs/logo/logo-icon.png" style="border-width: 0px; width: 50px;
+                float: left; margin-top: -4px" />
+            fly.mini.Tree 1.0 API</a>
+        <div style="position: absolute; right: 10px; top: 5px" class="top-right-link">
+            <a href="http://mini.flyui.net/FAQ" target="_blank">FAQ</a> <a href="http://forum.flyui.net"
+                target="_blank">forum</a> <a href="http://mini.flyui.net" target="_blank">mini.flyui.net</a>&nbsp;&nbsp;
+            <select id="lang">
+                <option value="en">English</option>
+                <option value="zh-cn">中文</option>
+            </select>
+        </div>
+    </div>
+    <div class="doc-product-bottom">
+    </div>
+    <div id="doc-bottom">
+        <div id="left-panel" style="height: 100%;">
+            <div id="left-top-bar">
+                <input id="query" /><a id="expand-All" onclick="API.current.tree.expandAll()"> </a>
+                <a id="collapse-All" onclick="API.current.tree.collapseAll()"></a>
+            </div>
+            <div id="left-nav"></div>
+        </div>
+        <div id="center-center">
+        </div>
+        <div id="rightRoot">
+            <div id="right-welcome">
+                <a style="text-align: right; color: gray; font-size: 15px; padding-top: 10px" href="http://www.flyui.net"
+                    target="_blank">
+                    <img style="border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px;
+                        border-left-width: 0px" src="common/imgs/logo/LOGO-large.png"><br>
+                    Copyright (c) 2010-2011 KuiyouLi</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var ms = location.search.match(/[\?\&]to\s*=([^\&]*)(\&?)/i);
+        ms && tree.itemMap[ms[1]] && tree.itemMap[ms[1]].select()
+
+        var bottom = document.getElementById("doc-bottom");
+        var rightRoot = document.getElementById("rightRoot");
+        var leftNav = document.getElementById("left-nav");
+        
+        window.onresize = function () {
+            var bottomHeight = document.body.offsetHeight - bottom.offsetTop;
+            bottom.style.height = Math.max(0, bottomHeight) + "px";
+            leftNav.style.height = Math.max(0, bottomHeight - 32) + "px"
+            var rightWidth = document.body.offsetWidth - 268;
+            rightRoot.style.width = Math.max(0, rightWidth) + "px";
+        }
+
+        setTimeout(window.onresize)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        select - Only one node can be selected
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a>
+    <div id="selectItems" class="demo-result">
+    </div>
+    <div id="treeContainer" class="demo-tree-container">
+    </div>
+    <div class="demo-code">
+        new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>selectionMode: 
+        fly.mini.selectionMode.single</strong><br />
+        })<br />
+    </div>
+    <script type="text/javascript" id="code">
+
+        var tree = new fly.mini.Tree({
+            container: "treeContainer",
+            selectionMode: fly.mini.selectionMode.single,
+            data: items_hasIcon,
+            onSelect: function (item, fireByDom) {
+                if (fireByDom) {
+                    document.getElementById('selectItems').innerHTML = "selected item: " + item.text
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

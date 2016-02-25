@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        <!--check-半选-->
+        Tree node with checkstate Intermediate
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <br />
+    <table class="demo-table-frame" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td valign="top">
+                Checkbox view:
+                <div id="treeContainer-checkbox" class="demo-tree-container">
+                </div>
+                <div class="demo-code">
+                   new fly.mini.Tree({<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; checkMode: fly.mini.checkMode.multi,<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>useCheckHalf: true<br />
+                    </strong>
+                    })</div>
+            </td>
+            <td valign="top">
+                Radiobox view:
+                <div id="treeContainer-radiobox" class="demo-tree-container">
+                </div>
+                <div class="demo-code">
+                    new fly.mini.Tree({<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; checkMode: fly.mini.checkMode.single,<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>useCheckHalf: true<br />
+                    </strong>
+                    })</div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" id="code">
+        
+        items_hasIcon[0].items[0].checked=true
+
+        var treeCheckbox = new fly.mini.Tree({
+            container: "treeContainer-checkbox",
+            checkMode: fly.mini.checkMode.multi,
+            useCheckHalf: true,
+            data: items_hasIcon
+        });
+
+        var treeRadiobox = new fly.mini.Tree({
+            container: "treeContainer-radiobox",
+            checkMode: fly.mini.checkMode.single,
+            useCheckHalf: true,
+            data: items_hasIcon
+        });
+    </script>
+</body>
+</html>

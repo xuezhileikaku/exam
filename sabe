@@ -1,0 +1,4 @@
+require();
+var_dump($_GET);
+exit();
+header('Location: ./home/');

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <script src="../../../tree/plugins/tree-layout-column/layout-column.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../../tree/plugins/tree-layout-column/layout-column.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        /* node style */
+        .item-library
+        {
+            background-image: url(../../common/imgs/library.gif);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-title">
+        <!--子节点布局扩展：flow-->
+        Tree node flow layout
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a>
+    <div id="treeContainer" class="demo-tree-container" style="width: 300px">
+    </div>
+    <script type="text/javascript" id="code">
+        var items = [{
+            expanded: true,
+            text: 'Library',
+            iconCss: 'item-library',
+            items: [{
+                text: 'Video',
+                iconCss: 'item-folder',
+                //layout
+                itemsLayout: 'flow',
+                expanded: true,
+                items: [{
+
+                    text: 'My video',
+                    iconCss: 'item-file'
+                }, {
+                    text: 'Public voide',
+                    iconCss: 'item-file'
+                }, 'Other']
+            }, {
+                text: 'Picture',
+                iconCss: 'item-folder',
+                expanded: true,
+                itemsLayout: 'flow',
+                items: [{
+                    text: 'My picture',
+                    iconCss: 'item-file'
+                }, {
+                    text: 'Public picture',
+                    iconCss: 'item-file'
+                }, 'gif', 'jpg', 'png', 'bmp']
+            }, {
+                text: 'Document',
+                iconCss: 'item-folder',
+                itemsLayout: 'flow',
+                items: [{
+                    text: 'My document',
+                    iconCss: 'item-file'
+                }, {
+                    text: 'Public document',
+                    iconCss: 'item-file'
+                }]
+            }, {
+                text: 'Music',
+                iconCss: 'item-folder',
+                itemsLayout: 'flow',
+                items: [{
+                    text: 'My music',
+                    iconCss: 'item-file'
+                }, {
+                    text: 'Public music',
+                    iconCss: 'item-file'
+                }]
+            }, {
+                text: 'Other',
+                iconCss: 'item-file'
+            }]
+        }]
+
+
+        var tree = new fly.mini.Tree({
+            container: "treeContainer",
+            checkMode: fly.mini.checkMode.multi,
+            checkCascade: true,
+            data: items
+        });
+    </script>
+</body>
+</html>
