@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <script src="../../common/fly-min.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="demo-title">
+        <!--通过fly Ajax 请求数据-->
+        Ajax loading node data.
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a>
+    <div id="treeContainer" class="demo-tree-container">
+    </div>
+    <div class="demo-code" >
+        <script type="text/javascript" id="code">
+            //<script src="../../common/fly-min.js" type="text/javascript" />
+
+            fly.mini.ajax = $.ajax;
+
+            var tree = new fly.mini.Tree({
+                container: "treeContainer",
+                root: {
+                    text: 'load by fly ajax'
+                },
+                async: {
+                    //异步请求的url,通过url传递"text"参数
+                    //Asynchronous request url, passing through the url "text" parameter
+                    url: "../../common/data/data.php?node={text}",
+
+                    //以get方式发起请求
+                    //Way to get initiated the request
+                    method: "get"
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

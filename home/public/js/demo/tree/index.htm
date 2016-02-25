@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>fly.mini.Tree 1.0 Demo </title>
+    <link href="../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../fly.mini-all.js" type="text/javascript"></script>
+    <style type="text/css">
+        body, html
+        {
+            padding: 0px;
+            overflow: hidden;
+        }
+        
+        .item-parent
+        {
+            background-image: url(../common/imgs/library.gif);
+        }
+        
+        .item-children
+        {
+            background-image: url(../common/imgs/file.gif);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-product">
+        <a href="http://mini.flyui.net" target="_blank">
+            <img src="../common/imgs/logo/logo-icon.png" style="border-width: 0px; width: 50px;
+                float: left; margin-top: -4px" />
+            fly.mini.Tree 1.0 Demo</a>
+        <div style="position: absolute; right: 10px; top: 5px" class="top-right-link">
+            <a href="http://mini.flyui.net/FAQ" target="_blank">FAQ</a> <a href="http://forum.flyui.net"
+                target="_blank">forum</a> <a href="http://mini.flyui.net" target="_blank">mini.flyui.net</a>
+        </div>
+    </div>
+    <div class="demo-product-bottom">
+    </div>
+    <div id="demo-bottom">
+        <div id="left-nav" style="height: 100%;">
+        </div>
+        <div id="center-center">
+        </div>
+        <iframe name="iframe" frameborder="0" src="fly.htm"></iframe>
+    </div>
+    <script type="text/javascript">
+        var tree = new fly.mini.Tree({
+            container: "left-nav",
+            checkMode: fly.mini.checkMode.none,
+            leastSelectionOne: true,
+            height: "100%",
+            width: "100%",
+            autoScroll: true,
+            showBorder: false,
+            itemKey: "id",
+            navTarget: "iframe",
+            onJoin: function (item) {
+                item.iconCss = item.items.length ? "item-parent" : "item-children"
+            },
+            onBeforeSelect: function (item) {
+                return !!item.url
+            },
+            toggleEvents: {
+                panel: "click"
+            },
+            onSelect: function (item) {
+                if (item.url)
+                    window.open(item.url, this.navTarget);
+            },
+            data: [{
+                id: "simple", text: "Simple", url: "simple/simple.htm"
+            }, {
+                id: "icon",
+                text: "Icon",
+                expanded: true,
+                items: [
+                    { id: "icon-path", text: "Icon path", url: "icon/icon.htm" },
+                    { id: "icon-css", text: "Icon Css", url: "icon/iconCss.htm" },
+                    { id: "using-iconFormat", text: "Using iconFormat", url: "icon/icon-format.htm"}]
+            }, {
+                id: "appearance",
+                text: "Appearance",
+                items: [
+                    { id: "show-line", text: "Show line", url: "skin/line.htm" },
+                    { id: "checked-style", text: "Checked style", url: "skin/checked-strikeout.htm" },
+                    { id: "yellow-skin", text: "Yellow skin", url: "skin/yellow.htm" },
+                    { id: "box", text: "Box", url: "skin/box.htm" },
+                    { id: "style-css", text: "Style/Css", url: "skin/style.htm" }
+                ]
+            }, {
+                id: "ajax",
+                text: "Ajax",
+                items: [
+                        { id: "jQuery-ajax", text: "jQuery Ajax", url: "ajax/jquery.htm" },
+                        { id: "fly-ajax", text: "fly Ajax", url: "ajax/fly.htm" },
+                        { id: "microsoft-ajax", text: "Microsoft Ajax", url: "ajax/microsoftAjax.htm" }
+                    ]
+            }, {
+                id: "",
+                text: "Check",
+                items: [
+                        { id: "check-multi", text: "Check-multi", url: "check/check-multi.htm" },
+                        { id: "check-single", text: "Check-single", url: "check/check-single.htm" },
+                        { id: "single-by-level", text: "Single by level", url: "check/check-singleByLevel.htm" },
+                        { id: "box-on-the-right", text: "Box on the right", url: "check/check-position.htm" },
+                        { id: "check-half", text: "Check-half", url: "check/check-half.htm" },
+                        { id: "check-cascade", text: "Check-cascade", url: "check/check-cascade.htm" },
+                        { id: "more-cascade-configuration", text: "More cascade configuration", url: "check/check-cascade-more.htm" }
+                    ]
+            }, {
+                id: "select",
+                text: "Select",
+                items: [
+                        { id: "select-multi", text: "Select-multi", url: "select/select-multi.htm" },
+                        { id: "select-single", text: "Select-single", url: "select/select-single.htm" },
+                        { id: "single-by-level", text: "Single by level", url: "select/select-singleByLevel.htm" },
+                        { id: "select-at-least-one", text: "Select at least one", url: "select/select-leastSelectionOne.htm" },
+                        { id: "keep-sync", text: "Keep sync(check,select)", url: "select/select-check-sync.htm" }
+                    ]
+            }, {
+                id: "performance",
+                text: "Performance",
+                items: [
+                        { id: "50000-items", text: "50000 items", url: "performance/50000.htm" },
+                        { id: "100000-items", text: "100000 items", url: "performance/100000.htm" }
+                    ]
+            }, {
+                id: "events",
+                text: "Events",
+                items: [
+                        { id: "common-event", text: "Common event", url: "event/events.htm" },
+                        { id: "custom-action", text: "Custom action", url: "event/custom-action.htm" }
+                    ]
+            }, {
+                id: "plugin",
+                text: "Plugin",
+                items: [
+                        { id: "flow-layout", text: "Flow layout", url: "expansibility/layout-flow.htm" },
+                        { id: "editor", text: "Editor", url: "expansibility/editor.htm" }
+                    ]
+            }]
+        });
+
+        // tree.expandAll();
+
+        var ms = location.search.match(/[\?\&]to\s*=([^\&]*)(\&?)/i);
+        ms && tree.itemMap[ms[1]] && tree.itemMap[ms[1]].select()
+
+        var bottom = document.getElementById("demo-bottom");
+        var iframe = document.getElementsByTagName("iframe")[0];
+        window.onresize = function () {
+            var bottomHeight = document.body.offsetHeight - bottom.offsetTop;
+            bottom.style.height = Math.max(0, bottomHeight) + "px";
+            var iframeWidth = document.body.offsetWidth - 190;
+            iframe.style.width = Math.max(0, iframeWidth) + "px";
+        }
+
+        setTimeout(window.onresize)
+
+        iframe.onload = function () {
+            setTimeout(function () {
+                iframe.className = Math.random();
+            }, 10);
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        toggleEvents,checkEvents,selectEvents,itemEvents ...
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <br />
+    Sometimes, we need to flexible control user behavior, may need to users in the double click nodes on node, click on the text area checked node, this is a very simple question:<br />
+    很多时候,我们需要对用户行为进行灵活控制,可能需要用户在双击节点时展开节点,点击文本区域时勾选节点,这是个非常简单的问题<br />
+    <div id="treeContainer" class="demo-tree-container">
+    </div>
+    <div class="demo-code">
+        new fly.mini.Tree({
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>&nbsp;//双击节点展开/折叠节点<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Double-click the node expand/collapse node </em>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp;toggleEvents: { panel: &#39;dblclick&#39;
+            }, </strong>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//单击textDom切换节点勾选状态<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Click textDom switching nodes check state </em>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>checkEvents: { textDom: &#39;click&#39;
+            } </strong>
+        <br />
+        });</div>
+    <p>
+        &nbsp;</p>
+    Through the &quot;itemEvents&quot; can give node any member add event, let the mouse after 
+    nodes in the &quot;state&quot; show in the &quot;text&quot; attribute node, click on a node 
+    activated message box:<br />
+    通过“itemEvents”可以给节点任何成员添加事件，下面让鼠标经过节点时在“state”中显示节点“text”属性，单击节点弹出提示框：
+   
+    <br />
+    <div id="treeContainer2" class="demo-tree-container">
+        <span id="state" class="demo-light">&nbsp;</span><br />
+    </div>
+   
+    <div class="demo-code">
+        new fly.mini.Tree({ 
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>itemEvents</strong>: {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>textDom</strong>: {
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <em>//为节点的textDom添加mouseover事件<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        // To add a mouseover event node textDom </em>
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>mouseover</strong>: function (item, el, evt) { { 
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        document.getElementById(&#39;state&#39;).innerText = el.innerText;
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        },
+        <br /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>panel</strong></strong>: {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <em>//给节点添加click事件<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        // Adding click event to the node </em>
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>click</strong>: function (item, el, evt) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        alert(&quot;click: &quot; + this.text)
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        }
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+        });</div>
+    <br />
+    <script type="text/javascript" id="code">
+        new fly.mini.Tree({
+            container: "treeContainer",
+            checkMode: fly.mini.checkMode.multi,
+            useCheckHalf: false,
+            data: items_hasIcon,
+            //双击节点展开/折叠节点
+            toggleEvents: { panel: 'dblclick' },
+            //单击textDom切换节点勾选状态
+            checkEvents: { textDom: 'click' }
+        });
+
+        new fly.mini.Tree({
+            container: "treeContainer2",
+            data: items_hasIcon,
+            itemEvents: {
+                textDom: {
+                    //为节点的textDom添加mouseover事件
+                    mouseover: function (item, el, evt) {
+                        document.getElementById('state').innerText = el.innerText;
+                    }
+                },
+                panel: {
+                    //为节点的添加click事件
+                    click: function (item, el, evt) {
+                        alert("click: " + this.text)
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+  
+</head>
+<body>
+    <div class="demo-title">
+        50*50*20=50000 items
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <br />
+    <input type="checkbox" id=checkAll /><label for=checkAll >check all</label>
+    <div id="treeContainer-checkbox" class="demo-tree-container">
+    </div>
+    <script type="text/javascript" id="code">
+        var items = []
+        var i = 0
+        while (i++ < 50) {
+            var item = { text: "item " + i, children: [], iconCss: 'item-folder' }
+            items.push(item)
+
+            var j = 0
+            while (j++ < 50) {
+                var jItem = {
+                    text: "item " + i + '-' + j,
+                    iconCss: 'item-folder',
+                    children: []
+                }
+                item.children.push(jItem)
+
+                var n = 0
+                while (n++ < 20) {
+                    jItem.children.push({
+                        text: "item " + i + '-' + j + "-" + n,
+                        iconCss: 'item-file'
+                    })
+                }
+            }
+        }
+
+        var treeCheckbox = new fly.mini.Tree({
+            container: "treeContainer-checkbox",
+            checkMode: fly.mini.checkMode.multi,
+            checkCascade:true,
+            data: items
+        });
+
+        document.getElementById('checkAll').onclick = function () {
+            treeCheckbox.checkAll(this.checked);
+        }
+     
+    </script>
+</body>
+</html>

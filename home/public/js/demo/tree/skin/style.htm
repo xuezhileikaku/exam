@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+    <style type="text/css">
+        .item-border .f-m-item-text
+        {
+            border: 1px dotted gray;
+            border-radius: 4px;
+            margin-left: 3px;
+        }
+        
+        .item-border .f-m-item:hover .f-m-item-text
+        {
+            text-decoration: none;
+            border: 1px solid Red;
+            font-weight: bold;
+        }
+        
+        </style>
+</head>
+<body>
+    <div class="demo-title">
+        With style and CSS attributes control the appearance
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <table class="demo-table-frame" border="0" cellpadding="0" cellspacing="0" width=100% >
+        <tr>
+            <td valign="top">
+                <div id="treeContainer-style" class="demo-tree-container">
+                </div>
+                <div class="demo-code">
+                    new fly.mini.Tree({<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>style:'font-size:20px;font-weight:bold'</strong>
+                    <br />
+                    })</div>
+            </td>
+            <td valign="top">
+                <div id="treeContainer-css" class="demo-tree-container">
+                </div>
+                <div class="demo-code">
+                    &lt;style type=&quot;text/css&quot;&gt;<br />
+                    <em>&nbsp;&nbsp;&nbsp; /*默认边框 (Default border)*/</em><br />
+                    &nbsp;&nbsp;&nbsp; .item-border .f-m-item-text<br />
+                    &nbsp;&nbsp;&nbsp; {<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border:1px dotted gray;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius:4px;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-left:3px;
+                    <br />
+                    &nbsp;&nbsp;&nbsp; }<br />
+                    <br />
+                    <em>&nbsp;&nbsp;&nbsp; /*鼠标停靠时的边框 (The mouse over at the border)*/</em><br />
+                    &nbsp;&nbsp;&nbsp; .item-border .f-m-item:hover .f-m-item-text 
+                    <br />
+                    &nbsp;&nbsp;&nbsp; {<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-decoration:none;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border:1px solid Red;<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight:bold;<br />
+                    &nbsp;&nbsp;&nbsp; }<br />
+                    <br />
+                    &lt;/style&gt;<br />
+                    <br />
+                   new fly.mini.Tree({
+                    <br />
+                    <em>&nbsp;&nbsp;&nbsp; //通过样式 &quot;item-border&quot; 控制节点边框<br />
+&nbsp;&nbsp;&nbsp; //&nbsp; Through the style &quot;item-border&quot; control node border</em><br />
+                    <strong>&nbsp;&nbsp;&nbsp; css:&#39;item-border&#39;, </strong>
+                    <br />
+                    &nbsp;&nbsp;&nbsp; container: &quot;treeContainer-css&quot;,
+                      <br />
+                    &nbsp;&nbsp;&nbsp; checkMode: fly.mini.checkMode.multi,
+                    <br />
+                    &nbsp;&nbsp;&nbsp; data: items_hasIcon
+                    <br />
+                    });</div>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                &nbsp;</td>
+            <td valign="top">
+                &nbsp;</td>
+        </tr>
+    </table>
+    <br />
+    <script type="text/javascript" id="code">
+
+        new fly.mini.Tree({
+            style: 'font-size:20px;font-weight:bold',
+            container: "treeContainer-style",
+            checkMode: fly.mini.checkMode.multi,
+            checkCascade: true,
+            data: items_hasIcon
+        });
+
+        new fly.mini.Tree({
+            css: 'item-border',
+            container: "treeContainer-css",
+            checkMode: fly.mini.checkMode.multi,
+            data: items_hasIcon
+        });
+
+    </script>
+</body>
+</html>

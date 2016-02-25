@@ -1,0 +1,73 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajaxtest</title>
+	<script src="js/jquery-1.7.js" type="text/javascript" ></script>
+	<style>
+	#ajax{width:500px; padding:20px; border:1px solid #f00;}
+	.load{vertical-align:middle;}
+	</style>
+</head>
+<body>
+<div id="ajax">	
+	<div class="load">
+		<div class="loadCon"></div>	
+		<input type="button" value="load">
+	</div>
+	<div class="get">
+		<div class="getCon"></div>	
+		<input type="button" value="get">
+	</div>
+	<div class="post">
+		<div class="postCon"></div>	
+		<input type="button" value="post">
+	</div>
+	<div class="aj">
+		<div class="ajCon"></div>	
+		<input type="button" value="aj">
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+var $ajax = $('#ajax'),
+	$load = $ajax.find('div.load'),
+	$get = $ajax.find('div.get'),
+	$post = $ajax.find('div.post'),
+	$aj = $ajax.find('div.aj');
+
+$load.find("input").click(function(){
+	$(this).load("a.php?info=load",{a:'n',b:'m'},function(result){
+		$load.find(".loadCon").html(result);	
+	});
+});
+
+$get.find("input").click(function(){
+	$.get("a.php?info=load",function(result){
+		$get.find(".getCon").html(result);	
+	});
+});
+
+$post.find("input").click(function(){
+	$.post("a.php?info=load",{a:'n',b:'m'},function(result){
+		$post.find(".postCon").html(result);	
+	},'html');
+});
+
+$aj.find("input").click(function(){
+	$.ajax({
+		url : 'a.php?info=load',
+		data : {},
+		dataType : 'html',
+		async : false,
+		success : function(result){
+			$aj.find(".ajCon").html(result);
+		}
+	});
+});
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pic Sort</title>
+	<link rel="stylesheet" href="css/base/jquery.ui.all.css">
+	<script src="js/jquery-1.6.2.js"></script>
+	<script src="js/jquery.ui.core.js"></script>
+	<script src="js/jquery.ui.widget.js"></script>
+	<script src="js/jquery.ui.mouse.js"></script>
+	<script src="js/jquery.ui.draggable.js"></script>
+	<script src="js/jquery.ui.sortable.js"></script>
+	<style>
+	*{list-style:none; margin:0; padding:0;}
+	.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+	.clearfix { display: inline-table; }
+	.clearfix { display: block; }
+	#pic{margin:20px; border:1px solid #ccc; width:630px; padding:0 0 10px 10px;}
+	#pic ul li{float:left; width:140px; height:105px; margin:10px 10px 0 0; padding:2px; border:1px solid #ccc; cursor:move;}
+	#pic ul{line-height:0px;}
+	#pic ul li.border{border:1px solid #444;}
+	</style>
+</head>
+
+<body>
+<div id="pic">
+	<ul class="clearfix">
+		<li><img src="img/01.jpg" width="140" height="105"></li>
+		<li><img src="img/02.jpg" width="140" height="105"></li>
+		<li><img src="img/03.jpg" width="140" height="105"></li>
+		<li><img src="img/04.jpg" width="140" height="105"></li>
+		<li><img src="img/05.jpg" width="140" height="105"></li>
+		<li><img src="img/06.jpg" width="140" height="105"></li>
+		<li><img src="img/07.jpg" width="140" height="105"></li>
+		<li><img src="img/08.jpg" width="140" height="105"></li>
+		<li><img src="img/09.jpg" width="140" height="105"></li>
+		<li><img src="img/10.jpg" width="140" height="105"></li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	$( "#pic>ul" ).sortable({ containment: "#pic" , opacity: 0.6 , cursorAt:{top:60,left:70}});
+	$( "#pic>ul" ).disableSelection();
+	
+	$("#pic>ul>li").mouseover(function(){
+		$(this).addClass("border");
+	}).mouseleave(function(){
+		$(this).removeClass("border");
+	});
+});
+</script>
+
+</body>
+
+</html>

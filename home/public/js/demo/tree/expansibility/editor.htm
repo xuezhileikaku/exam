@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../../fly.mini-all.js" type="text/javascript"></script>
+    <script src="../../common/demo.js" type="text/javascript"></script>
+    <link href="../../../tree/skin/default/tree.css" rel="stylesheet" type="text/css" />
+    <link href="../../../tree/plugins/editor/editor.css" rel="stylesheet" type="text/css" />
+    <script src="../../../tree/plugins/editor/editor.js" type="text/javascript"></script>
+    <link href="../../common/demo.css" rel="stylesheet" type="text/css" />
+    <script src="../../common/data/items-icon-format.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="demo-title">
+        <!--编辑插件：fly.mini.ItemEditor-->
+        Tree node with ItemEditor plugin
+    </div>
+    <a href="javascript:viewSource('code')" class="button-viewSource">View code</a><br />
+    <br />
+    <span id="state" class="demo-result">Click the contents area, or double-click any node area began to edit.<br /> 单击内容区域，或者双击节点任何区域开始编辑。
+    </span>
+    <table class="demo-table-frame" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td valign="top">
+                <div id="treeContainer" class="demo-tree-container" style="width: 380px;">
+                </div>
+            </td>
+            <td valign="top">
+                <!--编辑过的节点：-->
+                Edited nodes：
+                <div id="editedItems" class="demo-tree-container" style="padding: 10px;">
+                </div>
+                <br />
+                <!--编辑过的节点：-->
+                Changed nodes：
+                <div id="changedItems" class="demo-tree-container" style="padding: 10px;">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="demo-code">
+        var editor = new fly.mini.ItemEditor({
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//双击节点或点击 textDom 开始编辑节点<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Double-click the node or click on the 
+        textDom start editing node </em><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>startEvents</strong>: {
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>
+            &nbsp; panel: &quot;dblclick&quot;,
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            textDom: &#39;click&#39; </strong>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>//在开始编辑时执行<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp; In the beginning when edit execution</em><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onStart</strong>: function (item)
+        { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>&nbsp;//在结束编辑时执行 
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // In the end when edit execution </em><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>onEnd</strong>: function 
+        (item) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br />
+        });
+        <br />
+        <br />
+        var tree = new fly.mini.Tree({<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>&nbsp;//plugins </em>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>plugins: [editor], </strong>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data: items_hasIcon
+        <br />
+        });</div>
+    <script type="text/javascript" id="code">
+        var editor = new fly.mini.ItemEditor({
+            startEvents: {
+                panel: "dblclick",
+                textDom: 'click'
+            },
+            onStart: function (item) {
+                document.getElementById('state').innerHTML = "Edit(编辑):" + item.text
+            },
+            onEnd: function (item) {
+                var items = this.getEditedItems()
+                var texts = []
+                fly.mini.each(items, function (o) {
+                    texts.push(o.text)
+                });
+                document.getElementById('editedItems').innerHTML = texts.join('<br/>');
+
+                items = this.getChangedItems()
+                texts = []
+                fly.mini.each(items, function (o) {
+                    texts.push(o.text)
+                });
+                document.getElementById('changedItems').innerHTML = texts.join('<br/>');
+            }
+        });
+
+        var tree = new fly.mini.Tree({
+            container: "treeContainer",
+            //plugins
+            plugins: [editor],
+            checkCascade: {
+                check: { parent: true, children: true },
+                uncheck: { parent: true, children: true }
+            },
+            data: items_hasIcon
+        });
+    </script>
+</body>
+</html>
